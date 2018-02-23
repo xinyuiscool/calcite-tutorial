@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-  compile 'org.apache.calcite:calcite-core:1.6.0'
+  compile 'org.apache.calcite:calcite-core:1.15.0'
   compile 'org.slf4j:slf4j-api:1.7.13'
   testCompile 'junit:junit:4.12'
 }

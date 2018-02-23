@@ -78,7 +78,7 @@ public class SimpleQueryPlanner {
 
     // Create the query planner with sales schema. conneciton.getSchema returns default schema name specified in sales.json
     SimpleQueryPlanner queryPlanner = new SimpleQueryPlanner(connection.getRootSchema().getSubSchema(connection.getSchema()));
-    RelNode loginalPlan = queryPlanner.getLogicalPlan("select product from orders");
+    RelNode loginalPlan = queryPlanner.getLogicalPlan("select product, destination from orders as o join shipping as s on s.orderId = o.id ");
     System.out.println(RelOptUtil.toString(loginalPlan));
   }
 }

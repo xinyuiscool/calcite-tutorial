@@ -4,6 +4,7 @@ package org.pathirage.calcite.tutorial.planner;
 import org.apache.calcite.adapter.java.JavaTypeFactory;
 import org.apache.calcite.config.CalciteConnectionConfig;
 import org.apache.calcite.jdbc.CalciteConnection;
+import org.apache.calcite.jdbc.CalcitePrepare;
 import org.apache.calcite.linq4j.Enumerator;
 import org.apache.calcite.linq4j.Queryable;
 import org.apache.calcite.linq4j.tree.Expression;
@@ -297,6 +298,11 @@ public class SimpleCalciteConnection implements CalciteConnection {
 
   @Override
   public CalciteConnectionConfig config() {
+    return null;
+  }
+
+  @Override
+  public CalcitePrepare.Context createPrepareContext() {
     return null;
   }
 

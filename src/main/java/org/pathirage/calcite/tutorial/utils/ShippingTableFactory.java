@@ -8,40 +8,45 @@ import org.apache.calcite.linq4j.Linq4j;
 import org.apache.calcite.rel.type.RelDataType;
 import org.apache.calcite.rel.type.RelDataTypeFactory;
 import org.apache.calcite.rel.type.RelProtoDataType;
-import org.apache.calcite.schema.*;
+import org.apache.calcite.schema.ScannableTable;
+import org.apache.calcite.schema.Schema;
+import org.apache.calcite.schema.SchemaPlus;
+import org.apache.calcite.schema.Statistic;
+import org.apache.calcite.schema.Statistics;
+import org.apache.calcite.schema.Table;
+import org.apache.calcite.schema.TableFactory;
 import org.apache.calcite.sql.SqlCall;
 import org.apache.calcite.sql.SqlNode;
 import org.apache.calcite.sql.type.SqlTypeName;
 
 import java.util.Map;
 
-public class OrdersTableFactory implements TableFactory<Table> {
+public class ShippingTableFactory implements TableFactory<Table> {
   @Override
   public Table create(SchemaPlus schema, String name, Map<String, Object> operand, RelDataType rowType) {
     final Object[][] rows = {
-        {1, "paint", 10},
-        {2, "paper", 5},
-        {3, "brush", 12},
-        {4, "paint", 3},
-        {5, "paint", 3}
+        {1, 5, "shanghai"},
+        {2, 3, "newyork"},
+        {3, 4, "tokyo"},
+        {4, 2, "hongkong"}
     };
-    return new OrdersTable(ImmutableList.copyOf(rows));
+    return new ShippingTable(ImmutableList.copyOf(rows));
   }
 
-  public static class OrdersTable implements ScannableTable {
+  public static class ShippingTable implements ScannableTable {
     protected final RelProtoDataType protoRowType = new RelProtoDataType() {
       public RelDataType apply(RelDataTypeFactory a0) {
         return a0.builder()
             .add("id", SqlTypeName.INTEGER)
-            .add("product", SqlTypeName.VARCHAR, 10)
-            .add("units", SqlTypeName.INTEGER)
+            .add("orderId", SqlTypeName.INTEGER)
+            .add("destination", SqlTypeName.VARCHAR, 10)
             .build();
       }
     };
 
     private final ImmutableList<Object[]> rows;
 
-    public OrdersTable(ImmutableList<Object[]> rows) {
+    public ShippingTable(ImmutableList<Object[]> rows) {
       this.rows = rows;
     }
 

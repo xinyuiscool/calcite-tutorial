@@ -9,6 +9,11 @@
           name: 'Orders',
           type: 'custom',
           factory: 'org.pathirage.calcite.tutorial.utils.OrdersTableFactory'
+        },
+        {
+          name: 'Shipping',
+          type: 'custom',
+          factory: 'org.pathirage.calcite.tutorial.utils.ShippingTableFactory'
         }
       ]
     }
